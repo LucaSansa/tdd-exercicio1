@@ -60,8 +60,43 @@ describe('Calculadora', () => {
             parcelas: 10,
             valorParcela: 150.00
         }, 2);
-
-
         
     });
+
+    test('cliente que ganha mais de 5001', () => {
+        let props = calculadora.montarPropostas3({
+            nome: 'Roberto Carlos',
+            salario: 6000,
+            idade: 40,
+            valorFinanciado: 1000.00
+        });
+
+        expect(props.length).toBe(4);
+        expect(props[0]).toBeDeepCloseTo({
+            total: 1100.00,
+            parcelas: 2,
+            valorParcela: 550.00
+        }, 2);
+
+        expect(props[1]).toBeDeepCloseTo({
+            total: 1300.00,
+            parcelas: 4,
+            valorParcela: 325.00
+        }, 2);
+
+        expect(props[2]).toBeDeepCloseTo({
+            total: 1300.00,
+            parcelas: 10,
+            valorParcela: 130.00
+        }, 2);
+
+        expect(props[3]).toBeDeepCloseTo({
+            total: 1400.00,
+            parcelas: 20,
+            valorParcela: 70.00
+        }, 2);
+
+    });
+
+
 });
